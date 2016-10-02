@@ -13,17 +13,17 @@ import static ru.hh.school.utils.ParserProxy.safeParse;
  * @author timurnav
  *         on 01.10.2016.
  */
-public class IslandsReader {
+class IslandsReader {
 
     private final IslandFactory factory;
     private final IoAdapter ioAdapter;
 
-    public IslandsReader(IoAdapter ioAdapter) {
+    IslandsReader(IoAdapter ioAdapter) {
         factory = new IslandFactory();
         this.ioAdapter = ioAdapter;
     }
 
-    public List<Island> readIslands() {
+    List<Island> readIslands() {
         ioAdapter.writeLines("Insert data");
         int islandsNumber = ioAdapter.readInt();
         return range(0, islandsNumber)

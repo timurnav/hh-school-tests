@@ -11,9 +11,9 @@ import static ru.hh.school.utils.ParserProxy.safeParse;
  * @author timurnav
  *         on 30.09.2016.
  */
-public class IslandFactory {
+class IslandFactory {
 
-    public Island getIsland(List<String> list) {
+    Island getIsland(List<String> list) {
         Table<Integer, Integer, Integer> island = HashBasedTable.create();
 
         for (int y = 0; y < list.size(); y++) {

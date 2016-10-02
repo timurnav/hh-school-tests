@@ -9,12 +9,14 @@ import static java.math.BigInteger.valueOf;
  * @author timurnav
  *         on 01.10.2016.
  */
-public class IndexQualifier {
+class IndexQualifier {
 
     private static final BigInteger NINE = valueOf(9);
     private static final BigInteger TEN = valueOf(10);
 
-    public BigInteger getIndexInSequence(BigInteger value) {
+    BigInteger getIndexInSequence(FirstNumber firstNumber) {
+
+        BigInteger value = firstNumber.getValue();
 
         BigInteger temp = value.subtract(ONE);
 
@@ -34,6 +36,6 @@ public class IndexQualifier {
             temp = temp.subtract(NINE.multiply(origin));
             origin = nextOrigin;
         }
-        return sum;
+        return sum.add(valueOf(firstNumber.getStartsFrom()));
     }
 }

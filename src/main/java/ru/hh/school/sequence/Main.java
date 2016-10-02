@@ -22,7 +22,7 @@ public class Main {
             throw new IncorrectInitialDataFormat("Init parameter must be a number");
         }
         Sequence sequence = new Sequence(value);
-        BigInteger firstElement = numbersComparator.getFirstElementOfSequence(sequence);
+        FirstNumber firstElement = numbersComparator.getFirstElementOfSequence(sequence);
         BigInteger index = indexQualifier.getIndexInSequence(firstElement);
         io.writeLines(index);
     }

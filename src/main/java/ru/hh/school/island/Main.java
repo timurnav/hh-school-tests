@@ -13,11 +13,11 @@ public class Main {
     private static WaterGatherer waterGatherer = new WaterGatherer();
 
     public static void main(String[] args) {
-//        new IslandFactory(io)
-//                .readIslands()
-//                .stream()
-//                .map(waterGatherer::gatherWater)
-//                .forEach(io::writeLines);
+        new IslandsReader(io)
+                .readIslands()
+                .stream()
+                .map(waterGatherer::gatherWater)
+                .forEach(io::writeLines);
     }
 
 }

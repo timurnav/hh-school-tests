@@ -6,30 +6,33 @@ import java.math.BigInteger;
  * @author timurnav
  *         on 01.10.2016.
  */
-public class NumbersComparator {
+class NumbersComparator {
 
-    public BigInteger getFirstElementOfSequence(Sequence sequence) {
-        for (int i = 1; i < sequence.getLength(); i++) {
+    FirstNumber getFirstElementOfSequence(Sequence sequence) {
+        for (int i = 1; i <= sequence.getLength(); i++) {
             if (sequence.getLength() % i != 0) {
                 continue;
             }
-            if (isValidSequence(sequence, i)) {
-                return sequence.getValuePart(0, i);
+            FirstNumber firstNumber = getFirstNumber(sequence, i);
+            if (firstNumber != null) {
+                return firstNumber; //sequence.getValuePart(0, i);
             }
         }
-        return sequence.getSequence();
+        return new FirstNumber(sequence.getSequence(), 0);
     }
 
-    private boolean isValidSequence(Sequence sequence, int originLength) {
+    private FirstNumber getFirstNumber(Sequence sequence, int originLength) {
         if (sequence.isSimpleSequence(originLength)) {
-            return checkSimpleSequence(sequence, originLength);
+            return checkSimpleSequence(sequence, originLength)
+                    ? new FirstNumber(sequence.getValuePart(0, originLength), 0)
+                    : null;
         }
-        return checkMixedSequence(sequence, originLength);
+        return getFirstNumberOfMixedSequence(sequence, originLength);
     }
 
     //todo implement
-    private boolean checkMixedSequence(Sequence sequence, int originLength) {
-        return false;
+    private FirstNumber getFirstNumberOfMixedSequence(Sequence sequence, int originLength) {
+        return null;
     }
 
     private boolean checkSimpleSequence(Sequence sequence, int originLength) {

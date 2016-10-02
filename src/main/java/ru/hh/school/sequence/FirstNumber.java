@@ -6,13 +6,21 @@ import java.math.BigInteger;
  * @author timurnav
  *         on 01.10.2016.
  */
-public class FirstNumber {
+class FirstNumber {
 
-    private final BigInteger firstNumber;
+    private final BigInteger value;
     private final int startsFrom;
 
-    public FirstNumber(BigInteger firstNumber, int startsFrom) {
-        this.firstNumber = firstNumber;
+    FirstNumber(BigInteger value, int startsFrom) {
+        this.value = value;
         this.startsFrom = startsFrom;
+    }
+
+    BigInteger getValue() {
+        return value;
+    }
+
+    int getStartsFrom() {
+        return startsFrom;
     }
 }

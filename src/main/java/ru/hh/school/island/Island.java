@@ -10,13 +10,13 @@ import java.util.List;
  * @author timurnav
  *         on 30.09.2016.
  */
-public class Island {
+class Island {
 
     private final Table<Integer, Integer, Integer> earth;
     private final int lowest;
     private final int highest;
 
-    public Island(Table<Integer, Integer, Integer> earth) {
+    Island(Table<Integer, Integer, Integer> earth) {
         this.earth = earth;
         List<Integer> values = new ArrayList<>(earth.values());
         Collections.sort(values);
@@ -24,11 +24,11 @@ public class Island {
         highest = values.get(values.size() - 1);
     }
 
-    public int getHighestAltitude() {
+    int getHighestAltitude() {
         return highest;
     }
 
-    public int getLowestAltitude() {
+    int getLowestAltitude() {
         return lowest;
     }
 }
