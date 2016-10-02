@@ -20,6 +20,10 @@ class Sequence {
         this.length = value.length();
     }
 
+    String getValuePart(int index) {
+        return value.substring(index);
+    }
+
     String getRawValue() {
         return value;
     }
@@ -45,7 +49,7 @@ class Sequence {
     }
 
     boolean isSimpleSequence(int fromIndex, int originLength) {
-        String temp = value.substring(fromIndex, originLength);
+        String temp = value.substring(fromIndex, originLength).replaceAll("0+$", "");
         char[] chars = getSortedCharArray(temp);
         return valueOf(chars).equals(temp);
     }
