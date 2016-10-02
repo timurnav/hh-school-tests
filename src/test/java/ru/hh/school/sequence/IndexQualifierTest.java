@@ -21,19 +21,19 @@ public class IndexQualifierTest {
 
     @DataProvider
     public static Object[][] getData() {
+        return new Object[][]{
+                {"91"},
+//                {"99"},
+        };
+    }
+
+    @DataProvider
+    public static Object[][] getAllData() {
         Object[][] array = new Object[10000][1];
         for (int i = 0; i < array.length; i++) {
             array[i][0] = 1 + i + "";
         }
         return array;
-//        return new Object[][]{
-//                {"709"},
-//                {"9101"},
-//                {"9109"},
-//                {"21"},
-//                {"31"},
-//                {"32"},
-//        };
     }
 
     @BeforeSuite
@@ -43,18 +43,19 @@ public class IndexQualifierTest {
             stringBuilder.append(i);
         }
         sequence = stringBuilder.toString();
-        System.out.println(sequence.length());
     }
 
-    @Test(dataProvider = "getData")
+    @Test(dataProvider = "getAllData")
+//    @Test(dataProvider = "getData")
     public void getIndexInSequence(String value) throws Exception {
-        FirstNumber firstElement = numbersComparator.getFirstElementOfSequence(new Sequence(value));
+        Sequence sequence = new Sequence(value);
+        FirstNumber firstElement = numbersComparator.getFirstElementOfSequence(sequence);
         System.out.println(firstElement);
         BigInteger index = indexQualifier.getIndexInSequence(firstElement);
         System.out.println(index);
         Assert.assertEquals(
                 index,
-                BigInteger.valueOf(sequence.indexOf(value) + 1)
+                BigInteger.valueOf(this.sequence.indexOf(value) + 1)
         );
     }
 }

@@ -3,6 +3,9 @@ package ru.hh.school.sequence;
 import java.math.BigInteger;
 import java.util.Arrays;
 
+import static java.lang.String.valueOf;
+import static java.math.BigInteger.ONE;
+
 /**
  * @author timurnav
  *         on 01.10.2016.
@@ -17,6 +20,18 @@ class Sequence {
         this.length = value.length();
     }
 
+    String getRawValue() {
+        return value;
+    }
+
+    int getLength() {
+        return length;
+    }
+
+    BigInteger getSequence() {
+        return new BigInteger(value);
+    }
+
     BigInteger getValuePart(int index, int length) {
         return new BigInteger(value.substring(index, index + length));
     }
@@ -26,17 +41,43 @@ class Sequence {
     }
 
     boolean isSimpleSequence(int originLength) {
-        String temp = value.substring(0, originLength);
+        return isSimpleSequence(0, originLength);
+    }
+
+    boolean isSimpleSequence(int fromIndex, int originLength) {
+        String temp = value.substring(fromIndex, originLength);
+        char[] chars = getSortedCharArray(temp);
+        return valueOf(chars).equals(temp);
+    }
+
+    int getIndexOfSingleNotNullMinimum() {
+        char[] chars = getSortedCharArray(value.replace("0", ""));
+        return chars.length > 1 && chars[0] != chars[1]
+                ? value.indexOf(chars[0])
+                : -1;
+    }
+
+    private char[] getSortedCharArray(String temp) {
         char[] chars = temp.toCharArray();
         Arrays.sort(chars);
-        return String.valueOf(chars).equals(temp);
+        return chars;
     }
 
-    int getLength() {
-        return length;
+    BigInteger getSwappedValue(int index) {
+        String origin = value.substring(index);
+        String appendix = value.substring(0, index);
+        if (appendix.matches("^9+$")) {
+            return new BigInteger(origin + appendix.replace("9", "0")).subtract(ONE);
+        }
+        return new BigInteger(origin + appendix);
     }
 
-    BigInteger getSequence() {
-        return new BigInteger(value);
+    @Override
+    public String toString() {
+        return value;
+    }
+
+    boolean isAllNines() {
+        return value.matches("^9+$");
     }
 }
