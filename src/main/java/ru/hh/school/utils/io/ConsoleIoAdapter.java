@@ -1,11 +1,7 @@
 package ru.hh.school.utils.io;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-
-import static java.util.stream.IntStream.range;
 
 /**
  * @author timurnav
@@ -17,12 +13,7 @@ public class ConsoleIoAdapter implements IoAdapter {
 
     @Override
     public String readLine() {
-        return scanner.next();
-    }
-
-    @Override
-    public List<String> readLines(int n) {
-        return range(0, n).mapToObj(a -> readLine()).collect(Collectors.toList());
+        return scanner.nextLine();
     }
 
     @Override
