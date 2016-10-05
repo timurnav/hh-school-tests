@@ -4,10 +4,6 @@ import java.math.BigInteger;
 
 import static java.math.BigInteger.ONE;
 
-/**
- * @author timurnav
- *         on 01.10.2016.
- */
 class NumbersComparator {
 
     FirstNumber getFirstElementOfSequence(Sequence sequence) {

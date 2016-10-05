@@ -6,10 +6,6 @@ import java.util.Arrays;
 import static java.lang.String.valueOf;
 import static java.math.BigInteger.ONE;
 
-/**
- * @author timurnav
- *         on 01.10.2016.
- */
 class Sequence {
 
     private final String value;

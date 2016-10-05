@@ -7,10 +7,6 @@ import org.testng.annotations.Test;
 
 import java.math.BigInteger;
 
-/**
- * @author timurnav
- *         on 01.10.2016.
- */
 public class IndexQualifierTest {
 
     private NumbersComparator numbersComparator = new NumbersComparator();

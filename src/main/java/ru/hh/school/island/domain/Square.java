@@ -1,16 +1,11 @@
 package ru.hh.school.island.domain;
 
-/**
- * @author timurnav
- *         on 03.10.2016.
- */
 public class Square implements Comparable<Square> {
 
     private final int y;
     private final int x;
     private final int altitude;
-
-    private Boolean isElevation;
+    private boolean isExplored = false;
     private Lake lake;
 
     Square(int y, int x, int altitude) {
@@ -20,11 +15,7 @@ public class Square implements Comparable<Square> {
     }
 
     public boolean isUnexplored() {
-        return isElevation == null;
-    }
-
-    public Boolean isElevation() {
-        return isElevation;
+        return !isExplored;
     }
 
     public Lake getLake() {
@@ -32,8 +23,17 @@ public class Square implements Comparable<Square> {
     }
 
     public void setLake(Lake lake) {
-        isElevation = false;
+        setExplored();
         this.lake = lake;
+    }
+
+    public boolean isPartOfLake() {
+        return lake != null;
+    }
+
+
+    public void setExplored() {
+        isExplored = true;
     }
 
     public int getX() {
@@ -48,10 +48,6 @@ public class Square implements Comparable<Square> {
         return altitude;
     }
 
-    public void setElevation() {
-        isElevation = true;
-    }
-
     @Override
     public int compareTo(Square other) {
         return this.altitude - other.altitude;
@@ -61,12 +57,8 @@ public class Square implements Comparable<Square> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Square square = (Square) o;
-
-        if (x != square.x) return false;
-        return y == square.y;
-
+        return x == square.x && y == square.y;
     }
 
     @Override
@@ -78,8 +70,7 @@ public class Square implements Comparable<Square> {
 
     @Override
     public String toString() {
-        String description = isElevation ? "elevation" : lake.toString();
         return "Square{" + x + "x" + y + " - " + altitude + "}"
-                + (isElevation != null ? description : "");
+                + (isExplored ? " - explored" : "");
     }
 }

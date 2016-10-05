@@ -4,15 +4,10 @@ import ru.hh.school.island.domain.Island;
 import ru.hh.school.island.domain.IslandBuilder;
 import ru.hh.school.utils.io.IoAdapter;
 
-import java.util.List;
+import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.IntStream.range;
 
-/**
- * @author timurnav
- *         on 01.10.2016.
- */
 public class IslandsReader {
 
     private final IoAdapter ioAdapter;
@@ -21,10 +16,9 @@ public class IslandsReader {
         this.ioAdapter = ioAdapter;
     }
 
-    public List<Island> readIslands() {
+    public Stream<Island> readIslandsAsStream() {
         return range(0, ioAdapter.readInt())
-                .mapToObj(n -> readIsland())
-                .collect(toList());
+                .mapToObj(n -> readIsland());
     }
 
     private Island readIsland() {

@@ -5,10 +5,6 @@ import java.math.BigInteger;
 import static java.math.BigInteger.ONE;
 import static java.math.BigInteger.valueOf;
 
-/**
- * @author timurnav
- *         on 01.10.2016.
- */
 class IndexQualifier {
 
     private static final BigInteger NINE = valueOf(9);
