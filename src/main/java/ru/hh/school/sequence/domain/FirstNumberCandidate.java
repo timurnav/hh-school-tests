@@ -1,26 +1,26 @@
-package ru.hh.school.sequence;
+package ru.hh.school.sequence.domain;
 
 import java.math.BigInteger;
 
-class FirstNumber {
+public class FirstNumberCandidate {
 
     private final BigInteger value;
     private final int startsFrom;
 
-    FirstNumber(BigInteger value) {
+    public FirstNumberCandidate(String value) {
         this(value, 0);
     }
 
-    FirstNumber(BigInteger value, int startsFrom) {
-        this.value = value;
+    public FirstNumberCandidate(String value, int startsFrom) {
+        this.value = new BigInteger(value);
         this.startsFrom = startsFrom;
     }
 
-    BigInteger getValue() {
+    public BigInteger getValue() {
         return value;
     }
 
-    int getStartsFrom() {
+    public int getStartsFrom() {
         return startsFrom;
     }
 

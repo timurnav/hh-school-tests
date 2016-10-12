@@ -1,17 +1,29 @@
-package ru.hh.school.sequence;
+package ru.hh.school.sequence.service;
+
+import com.google.common.base.Preconditions;
+import ru.hh.school.sequence.domain.FirstNumberCandidate;
 
 import java.math.BigInteger;
+import java.util.List;
 
 import static java.math.BigInteger.ONE;
 import static java.math.BigInteger.valueOf;
 
-class IndexQualifier {
+public class IndexQualifier {
 
     private static final BigInteger NINE = valueOf(9);
     private static final BigInteger TEN = valueOf(10);
 
-    BigInteger getIndexInSequence(FirstNumber firstNumber) {
+    @SuppressWarnings("all")
+    public BigInteger getIndexInSequence(List<FirstNumberCandidate> firstNumber) {
+        Preconditions.checkArgument(!firstNumber.isEmpty());
+        return firstNumber.stream()
+                .map(this::getIndex)
+                .sorted()
+                .findFirst().get();
+    }
 
+    private BigInteger getIndex(FirstNumberCandidate firstNumber) {
         BigInteger value = firstNumber.getValue();
 
         BigInteger temp = value.subtract(ONE);
