@@ -1,5 +1,8 @@
 package ru.hh.school.sequence;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import ru.hh.school.sequence.domain.FirstNumberCandidate;
 import ru.hh.school.sequence.domain.Sequence;
 import ru.hh.school.sequence.service.IndexQualifier;
@@ -10,15 +13,17 @@ import java.util.List;
 
 public class IndexQualifierTest {
 
+    private final static int N = 10000;
+
     private SequenceHeadNumberCandidatesExtractor extractor = new SequenceHeadNumberCandidatesExtractor();
     private IndexQualifier indexQualifier = new IndexQualifier();
 
     private String sequence;
 
-    @BeforeClass
+    @Before
     public void init() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 1; i < 20000002; i++) {
+        for (int i = 1; i < N; i++) {
             stringBuilder.append(i);
         }
         sequence = stringBuilder.toString();
@@ -26,7 +31,7 @@ public class IndexQualifierTest {
 
     @Test
     public void getIndexInSequence() throws Exception {
-        for (int i = 0; i < 20000000; i++) {
+        for (int i = 1; i < N; i++) {
             String value = String.valueOf(i);
             Sequence sequence = new Sequence(value);
             List<FirstNumberCandidate> candidates = extractor.allocateFirstNumberCandidates(sequence);

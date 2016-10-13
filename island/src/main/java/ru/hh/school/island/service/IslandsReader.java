@@ -2,32 +2,33 @@ package ru.hh.school.island.service;
 
 import ru.hh.school.island.domain.Island;
 import ru.hh.school.island.domain.IslandBuilder;
-import ru.hh.school.utils.io.IoAdapter;
 
+import java.io.InputStream;
+import java.util.Scanner;
 import java.util.stream.Stream;
 
 import static java.util.stream.IntStream.range;
 
 public class IslandsReader {
 
-    private final IoAdapter ioAdapter;
+    private final Scanner scanner;
 
-    public IslandsReader(IoAdapter ioAdapter) {
-        this.ioAdapter = ioAdapter;
+    public IslandsReader(InputStream inputStream) {
+        this.scanner = new Scanner(inputStream);
     }
 
     public Stream<Island> readIslandsAsStream() {
-        return range(0, ioAdapter.readInt())
+        return range(0, scanner.nextInt())
                 .mapToObj(n -> readIsland());
     }
 
     private Island readIsland() {
-        int lines = ioAdapter.readInt();
-        int columns = ioAdapter.readInt();
+        int lines = scanner.nextInt();
+        int columns = scanner.nextInt();
         IslandBuilder islandBuilder = new IslandBuilder(lines, columns);
 
         range(0, lines * columns)
-                .mapToObj(n -> ioAdapter.readInt())
+                .mapToObj(n -> scanner.nextInt())
                 .forEach(islandBuilder::populateNextCell);
 
         return islandBuilder.build();
